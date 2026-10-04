@@ -1,0 +1,30 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="MIT"
+
+[[mods]]
+    modId="prosperityseed"
+    version="1.0.0"
+    displayName="Prosperity Ore Seeds"
+    description='''
+    Adds a Mystical Agriculture seed that grows Prosperity Ore.
+    '''
+
+    [[dependencies.prosperityseed]]
+        modId="forge"
+        mandatory=true
+        versionRange="[47.1.0,)"
+        ordering="NONE"
+        side="BOTH"
+    [[dependencies.prosperityseed]]
+        modId="minecraft"
+        mandatory=true
+        versionRange="[1.20.1]"
+        ordering="NONE"
+        side="BOTH"
+    [[dependencies.prosperityseed]]
+        modId="mysticalagriculture"
+        mandatory=true
+        versionRange="[7.0.0,)"
+        ordering="AFTER"
+        side="BOTH"
