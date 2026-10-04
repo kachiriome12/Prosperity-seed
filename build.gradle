@@ -1,0 +1,68 @@
+plugins {
+    id 'eclipse'
+    id 'idea'
+    id 'maven-publish'
+    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+}
+
+version = '1.0.0'
+group = 'com.prosperityseed'
+
+base {
+    archivesName = 'ProsperitySeed-1.20.1'
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+minecraft {
+    mappings channel: 'official', version: '1.20.1'
+
+    runs {
+        client {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            mods {
+                prosperityseed {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        server {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            mods {
+                prosperityseed {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+repositories {
+    maven { url 'https://maven.blakesmods.com' }
+    maven { url 'https://maven.blamejared.com' }
+}
+
+dependencies {
+    minecraft "net.minecraftforge:forge:${forge_version}"
+
+    implementation fg.deobf("com.blakebr0.cucumber:Cucumber:${cucumber_version}")
+    implementation fg.deobf("com.blakebr0.mysticalagriculture:MysticalAgriculture:${ma_version}")
+}
+
+jar {
+    manifest {
+        attributes([
+            'Specification-Title'     : 'prosperityseed',
+            'Specification-Version'   : '1',
+            'Implementation-Title'    : project.name,
+            'Implementation-Version'  : project.version
+        ])
+    }
+}
+
+jar.finalizedBy('reobfJar')
