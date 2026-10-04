@@ -8,6 +8,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: prosperity-seed
     steps:
       - uses: actions/checkout@v4
 
@@ -17,6 +20,8 @@ jobs:
           java-version: 17
 
       - uses: gradle/actions/setup-gradle@v4
+        with:
+          build-root-directory: prosperity-seed
 
       - name: Build
         run: |
@@ -27,4 +32,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ProsperitySeed-jar
-          path: build/libs/*.jar
+          path: prosperity-seed/build/libs/*.jar
